@@ -1,22 +1,26 @@
 <div align="center">
 
-# scrape-amazon 🚀 
+# scrape-amazon 🚀
 
-[![Downloads](https://img.shields.io/badge/dynamic/json?color=success&label=downloads&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fv2%2Fprojects%2Fscrape-amazon&style=flat-square)](https://github.com/officialpm/scrape-amazon)
+[![Downloads](https://img.shields.io/badge/dynamic/json?color=success&label=downloads&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fv2%2Fprojects%2Fscrape-amazon&style=flat-square)](https://github.com/accolver/scrape-amazon)
 ![versions](https://img.shields.io/pypi/v/scrape-amazon?label=version&style=flat-square&color=ffd05b)
 ![pyVersions](https://img.shields.io/pypi/pyversions/scrape-amazon?style=flat-square&color=f58b1b)
-![Stars](https://img.shields.io/github/stars/officialpm/scrape-amazon?color=e6e87d)
-![Forks](https://img.shields.io/github/forks/officialpm/scrape-amazon?color=3efac5)
-![License](https://img.shields.io/github/license/officialpm/scrape-amazon)
-![Visitors](https://visitor-badge.laobi.icu/badge?page_id=officialpm.scrape-amazon)
-
+![Stars](https://img.shields.io/github/stars/accolver/scrape-amazon?color=e6e87d)
+![Forks](https://img.shields.io/github/forks/accolver/scrape-amazon?color=3efac5)
+![License](https://img.shields.io/github/license/accolver/scrape-amazon)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=accolver.scrape-amazon)
 
 </div>
 
 ## Installation
 
 ```shell
-❯ pip install scrape-amazon
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+```shell
+pip install scrape-amazon
 ```
 
 ## Example
@@ -33,11 +37,13 @@ reviews = get_reviews('com','B085BCWJV6') #returns dataframe
 ### CLI
 
 #### How to use
+
 ```shell
 ❯ scrape-amazon [domain] [product_id] [output_path].csv
 ```
 
 #### Positional Arguments:
+
 ```shell
 domain       Amazon Domain (in/com)
 product_id   product id for scraping (B085BCWJV6)
@@ -45,6 +51,7 @@ output_path  output_path for saving (B085BCWJV6.csv)
 ```
 
 #### Example
+
 ```shell
 ❯ scrape-amazon com B085BCWJV6 B085BCWJV6.csv
 ```
@@ -63,8 +70,15 @@ output_path  output_path for saving (B085BCWJV6.csv)
 
 
 ```
-## Want to contribute?
-To get more information on contributing, go to the 
-[CONTRIBUTING.md](https://github.com/officialpm/scrape-amazon/blob/master/CONTRIBUTING.md)
 
-Also read the [CODE_OF_CONDUCT.md](https://github.com/officialpm/scrape-amazon/blob/master/CODE_OF_CONDUCT.md)
+## Want to contribute?
+
+To get more information on contributing, go to the
+[CONTRIBUTING.md](https://github.com/accolver/scrape-amazon/blob/master/CONTRIBUTING.md)
+
+Also read the [CODE_OF_CONDUCT.md](https://github.com/accolver/scrape-amazon/blob/master/CODE_OF_CONDUCT.md)
+
+# TODO:
+
+- [ ] Product scraper
+- [ ] Questions scraper

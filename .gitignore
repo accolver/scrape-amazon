@@ -69,3 +69,4 @@ dmypy.json
 # misc
 .python-version
 __pypackages__/
+.venv/

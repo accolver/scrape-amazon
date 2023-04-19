@@ -3,7 +3,7 @@ import argparse
 from types import ModuleType
 
 from .util.scrape import scrape_reviews
-from .util.urlFunctions import construst_reviews_URL
+from .util.url import construct_reviews_URL
 
 parser = argparse.ArgumentParser(description="Scrape Amazon Product Reviews")
 parser.add_argument("domain", type=str, help="amazon domain")
@@ -21,6 +21,6 @@ def get_reviews_cli() -> ModuleType:
     Returns:
         Scraped Dataframe
     """
-    all_reviews_url = construst_reviews_URL(args.domain, args.product_id)
+    all_reviews_url = construct_reviews_URL(args.domain, args.product_id)
     reviews = scrape_reviews(all_reviews_url, args.domain)
     reviews.to_csv(args.output_path)

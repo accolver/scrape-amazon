@@ -6,7 +6,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from p_tqdm import p_map
 
-from .urlFunctions import get_URL
+from .url import get_content
 
 
 # Flatten a list of lists into a single list.
@@ -24,14 +24,14 @@ def get_all_review_page_url(res: str) -> str:
 
 
 def extractPage(url: str) -> str:
-    r = get_URL(url)
+    r = get_content(url)
     pageNotLoaded = True
     productPage = BeautifulSoup(r.text, "html.parser")
     checkReviewLen = len(productPage.findAll("i", {"class": "review-rating"}))
     if checkReviewLen > 0:
         pageNotLoaded = False
     while pageNotLoaded:
-        r = get_URL(url)
+        r = get_content(url)
         productPage = BeautifulSoup(r.text, "html.parser")
         checkReviewLen = len(productPage.findAll("i", {"class": "review-rating"}))
         if checkReviewLen > 0:
@@ -105,7 +105,7 @@ def extractPage(url: str) -> str:
 
 # Extracts the total number of reviews from a given URL.
 def extractTotalPages(url):
-    r = get_URL(url)
+    r = get_content(url)
     productPage = BeautifulSoup(r.text, "html.parser")
     pageSpanText = productPage.findAll(
         "div", {"data-hook": "cr-filter-info-review-rating-count"}
@@ -158,3 +158,41 @@ def scrape_reviews(url, domain):
     # productReviewsData["Product Title"] = pageTitle
 
     return productReviewsData
+
+def scrape_product(url):
+        # Send a GET request to the URL
+    response = get_content(url)
+
+    # Create a BeautifulSoup object from the response content
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Find the title of the product
+    title = soup.find('span', {'id': 'productTitle'}).text.strip()
+
+    # Find the byline of the product
+    byline = soup.find('a', {'id': 'bylineInfo'}).text.strip()
+
+    # Find the price of the product
+    price = soup.find('span', {'class': 'priceToPay'}).find('span', {'class': 'a-offscreen'}).text.strip()
+
+    # Find the rating of the product
+    rating = soup.find('span', {'class': 'a-icon-alt'}).text.strip()
+
+    # Find the features of the product
+    features = [feature.text.strip() for feature in soup.find('div', {'id': 'feature-bullets'}).find('ul', {'class': 'a-unordered-list a-vertical a-spacing-mini'}).find_all('span', {'class': 'a-list-item'})]
+
+    # details = [detail.text.strip() for detail in soup.find('div', {'id': 'detailBullets_feature_div'}).find('ul', {'class': 'a-unordered-list'}).find_all('span', {'class': 'a-list-item'})]
+
+    # Not rendered when we fetch (async rendering?)
+    # description = soup.find('div', {'id': 'productDescription'}).find('span').text.strip()
+
+    # Print the results
+    print('Title:', title)
+    print('Byline:', byline)
+    print('Price:', price)
+    print('Rating:', rating)
+    print('Features:', features)
+    # print('Description:', description)
+    # print('Details:', details)
+
+

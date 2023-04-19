@@ -8,17 +8,35 @@ ua = UserAgent(family="chrome", os_family="windows")
 # ua = UserAgent(cache=False, use_cache_server=False, safe_attrs=("__injections__",))
 
 
-def construst_reviews_URL(domain: str, product_id: str) -> str:
-    """Constructs review URL.
+def construct_product_URL(domain: str, asin: str) -> str:
+    """Constructs product URL.
     Args:
-        product_id
+        ASIN (product ID)
     Returns:
         Constructed URL.
     """
-    return f"{url_prefix}.{domain}/dp/product-reviews/{product_id}"
+    return f"{url_prefix}.{domain}/dp/{asin}"
+
+def construct_questions_URL(domain: str, asin: str) -> str:
+    """Constructs questions URL.
+    Args:
+        ASIN (product ID)
+    Returns:
+        Constructed URL.
+    """
+    return f"{url_prefix}.{domain}/ask/questions/asin/{asin}/1?isAnswered=true"
+
+def construct_reviews_URL(domain: str, asin: str) -> str:
+    """Constructs review URL.
+    Args:
+        ASIN (product ID)
+    Returns:
+        Constructed URL.
+    """
+    return f"{url_prefix}.{domain}/dp/product-reviews/{asin}"
 
 
-def get_URL(url: str) -> str:
+def get_content(url: str) -> str:
     """Gets the contents of a remote url.
     Args:
         url
